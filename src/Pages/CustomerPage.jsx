@@ -13,7 +13,7 @@ function CustomerPage() {
   return (
     <div className="text-primary mt-40 capitalize">
       <h1 className="text-2xl font-semibold mb-4 border-b border-secondary">{customer.customerName}</h1>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <h2 className="text-lg font-semibold mb-2">Contact Information</h2>
           <p>Email: <span className='text-secondary'>{customer.customerEmail}</span></p>
