@@ -11,7 +11,7 @@ function CustomerPage() {
   }
 
   return (
-    <div className="text-primary mt-40">
+    <div className="text-primary mt-40 capitalize">
       <h1 className="text-2xl font-semibold mb-4 border-b border-secondary">{customer.customerName}</h1>
       <div className="grid grid-cols-2 gap-4">
         <div>
@@ -21,7 +21,8 @@ function CustomerPage() {
         </div>
         <div>
           <h2 className="text-lg font-semibold mb-2">Order Information</h2>
-          <p>Fridge Model: <span className='text-secondary'>{customer.fridge_model}</span></p>
+          <p>Partition: <span className='text-secondary'>{customer.partition}</span></p>
+          <p>Sold For: <span className='text-secondary'>{customer.customer_usage}</span></p>
           <p>Location: <span className='text-secondary'>{customer.location}</span></p>
           <p>Number of Items: <span className='text-secondary'>{customer.number_of_items}</span></p>
           <p>Total: <span className='text-secondary'>${customer.total}</span></p>

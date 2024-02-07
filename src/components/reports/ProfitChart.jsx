@@ -1,36 +1,44 @@
-import { useEffect, useState } from 'react';
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Sector,Legend, Cell, ResponsiveContainer } from 'recharts';
 
-const data01 = [
-  { name: '2022', value: 400 },
-];
+const COLORS = ['#FF4694', '#742244', '#ffacac', '#B7B7B7'];
 
-const data02 = [
-  { name: '2023', value: 60 },
-];
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-function ProfitChart() {
-  let [width, setWidth] = useState(400)
-  let [height, setHeight] = useState(400)
-  let innerRadius, outerRadius
-  useEffect(()=>{
-    
-    if(window.innerWidth < 550){
-      setWidth(200)
-      setHeight(200)
-    }
-  },[])
   return (
-    <div className="bg-secondaryback rounded-[20px] p-4 h-[435px] w-full text-center">
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+function ProfitChart({data}) {
+
+  return (
+    // <div className="bg-secondaryback rounded-[20px] p-4 h-[435px] w-full text-center">
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={width} height={height}>
-          <Pie dataKey="value" startAngle={90} endAngle={403.2} data={data02} cx="50%" cy="53%" innerRadius={40} outerRadius={75} fill="#8D8D99" />
-          <Pie dataKey="value" startAngle={90} endAngle={324} data={data01} cx="50%" cy="50%" innerRadius={40} outerRadius={80} fill="#C4DEFF" />
-          <Tooltip />
+        <PieChart width={400} height={400}>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius={80}
+            fill="#8884d8"
+            dataKey="value"
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
           <Legend />
         </PieChart>
       </ResponsiveContainer>
-    </div>
+    // </div>
   )
 }
 

@@ -9,7 +9,7 @@ function Orders() {
 	const filteredOrders = orders
 		.filter(
 			(order) =>
-				order.fridge_model
+				order.partition
 					.toLowerCase()
 					.includes(searchTerm.toLowerCase()) ||
 				order.customerName
@@ -17,7 +17,8 @@ function Orders() {
 					.includes(searchTerm.toLowerCase()) ||
 				order.id.toString().includes(searchTerm.toLowerCase()) ||
 				order.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        order.order_state.toLowerCase().includes(searchTerm.toLowerCase())
+        order.order_state.toLowerCase().includes(searchTerm.toLowerCase()) || 
+				order.customer_usage.toLowerCase().includes(searchTerm.toLowerCase())
 		)
 		;
 	return (
@@ -32,10 +33,11 @@ function Orders() {
 				/>
 			</div>
 			<div className="w-full rounded-md">
-				<div className="flex flex-row font-semibold bg-secondary text-darkGray rounded-t-md">
+				<div className="flex flex-row font-semibold bg-secondary text-darkGray rounded-t-md caption-bottom">
 					<div className="w-1/6 p-2 text-center">Order ID</div>
 					<div className="w-1/6 p-2 text-center">Customer Name</div>
-					<div className="w-1/6 p-2 text-center">Product</div>
+					<div className="w-1/6 p-2 text-center">partition</div>
+					<div className="w-1/6 p-2 text-center">selling for</div>
 					<div className="w-1/6 p-2 text-center">Quantity</div>
 					<div className="w-1/6 p-2 text-center">Order State</div>
 					<div className="w-1/6 p-2 text-center">Total Price</div>
@@ -50,7 +52,8 @@ function Orders() {
 					>
 						<div className="w-1/6 p-2 text-center">{order.id}</div>
 						<div className="w-1/6 p-2 text-center">{order.customerName}</div>
-						<div className="w-1/6 p-2 text-center">{order.fridge_model}</div>
+						<div className="w-1/6 p-2 text-center">{order.partition}</div>
+						<div className="w-1/6 p-2 text-center">{order.customer_usage}</div>
 						<div className="w-1/6 p-2 text-center">
 							{order.number_of_items}
 						</div>
