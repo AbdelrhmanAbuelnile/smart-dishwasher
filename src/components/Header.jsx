@@ -30,7 +30,7 @@ function Header() {
 
   return (
     <div  className='bg-primary w-screen py-3 md:py-7 px-5 md:px-20 flex flex-row justify-between lg:gap-52 items-center relative z-10'>
-      <Link to={'/'} className="text-lg lg:text-3xl font-bold text-third hover:text-secondary cursor-pointer duration-300 w-full">Smart Dishwasher</Link>
+      <Link to={'/'} className="text-lg lg:text-3xl font-bold text-third hover:text-secondary cursor-pointer duration-300 w-fit">Smart Dishwasher</Link>
 
 
       <div className="w-1/4 flex flex-row justify-center gap-9 items-center">
